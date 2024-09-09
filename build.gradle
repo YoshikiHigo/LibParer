@@ -1,0 +1,29 @@
+plugins {
+    // Javaプラグインを適用
+    id 'java'
+}
+
+repositories {
+    // 依存ライブラリのリポジトリをMaven Centralに設定
+    mavenCentral()
+    maven {
+        url "https://repo.gradle.org/gradle/libs-releases/"
+    }
+}
+
+dependencies {
+    // Gradle Tooling APIの依存関係
+    implementation group: 'org.gradle', name: 'gradle-tooling-api', version: '8.10'
+}
+
+java {
+    // 使用するJavaバージョンの設定
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)  // 必要に応じて変更
+    }
+}
+
+tasks.withType(JavaCompile) {
+    // コンパイルオプションの設定
+    options.encoding = 'UTF-8'
+}
